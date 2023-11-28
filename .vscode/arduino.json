@@ -1,0 +1,6 @@
+{
+    "configuration": "cpu=atmega2560",
+    "board": "arduino:avr:mega",
+    "sketch": "weaver-ssb-sdr-rig-homebrew.ino",
+    "output": "./build"
+}
