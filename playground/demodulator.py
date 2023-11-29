@@ -9,7 +9,7 @@ from fir_filter_lpf_2400hz import filter_taps as fir_filter_lpf_2400hz_taps
 noise = np.random.normal(0, 0.1, int(RF_SAMPLE_RATE))
 
 # make a signal 1khz above carrier
-signal = np.sin(2*np.pi*(RF_CARRIER+1000)*np.arange(0, 1, 1/RF_SAMPLE_RATE))
+signal = np.sin(2*np.pi*(RF_CARRIER - 1000)*np.arange(0, 1, 1/RF_SAMPLE_RATE))
 
 rf_signal = noise + signal
 
@@ -64,7 +64,7 @@ q_af_signal_filtered = sig.lfilter(fir_filter_lpf_2400hz_taps, 1.0, q_af_signal)
 # plt.title('I AF Signal Filtered Spectrum')
 # plt.show()
 
-af_lo = AF_LPF_CUTOFF / 2
+af_lo = 0.5*(AF_LPF_LOW_CUTOFF + AF_LPF_HIGH_CUTOFF)
 print(f"AF LO frequency for weaver ssb demodulation is {af_lo} Hz")
 
 # make 1 second of af_lo signal for i and q
