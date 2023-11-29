@@ -19,10 +19,11 @@ rf_signal = noise + signal
 # plt.show()
 
 AF_SAMPLE_RATE=22050
-AF_LPF_CUTOFF=2400
+AF_LPF_LOW_CUTOFF=0
+AF_LPF_HIGH_CUTOFF=2400
 
 # lo frequency for weaver ssb demodulation is lo=carrier + 0.5*AF_LPF_CUTOFF
-rf_lo = RF_CARRIER + 0.5*AF_LPF_CUTOFF
+rf_lo = RF_CARRIER + 0.5*(AF_LPF_LOW_CUTOFF + AF_LPF_HIGH_CUTOFF)
 print(f"RF LO frequency for weaver ssb demodulation is {rf_lo} Hz")
 
 # make 1 second of rf_lo signal for i and q
