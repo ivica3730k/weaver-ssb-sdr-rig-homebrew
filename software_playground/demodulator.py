@@ -4,7 +4,8 @@ import scipy.signal as sig
 
 RF_SAMPLE_RATE = 1e6
 RF_CARRIER = 100000
-MODE = "LSB"
+MODE = "USB"
+CHECK_SIDEBAND_REJECTION = True
 
 # make 1 second of noise on RF_SAMPLE_RATE with amplitude 0.1
 noise = np.random.normal(0, 0.25, int(RF_SAMPLE_RATE))
@@ -13,13 +14,24 @@ rf_signal = noise
 
 for i in range(0, 3000, 10):
     if MODE.upper() == "USB":
-        rf_signal = rf_signal + np.sin(
-            2 * np.pi * (RF_CARRIER + i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
-        )
+        if CHECK_SIDEBAND_REJECTION:
+            rf_signal = rf_signal + np.sin(
+                2 * np.pi * (RF_CARRIER - i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
+            )
+        else:
+            rf_signal = rf_signal + np.sin(
+                2 * np.pi * (RF_CARRIER + i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
+            )
+
     elif MODE.upper() == "LSB":
-        rf_signal = rf_signal + np.sin(
-            2 * np.pi * (RF_CARRIER - i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
-        )
+        if CHECK_SIDEBAND_REJECTION:
+            rf_signal = rf_signal + np.sin(
+                2 * np.pi * (RF_CARRIER + i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
+            )
+        else:
+            rf_signal = rf_signal - np.sin(
+                2 * np.pi * (RF_CARRIER + i) * np.arange(0, 1, 1 / RF_SAMPLE_RATE)
+            )
     else:
         assert False, "MODE must be USB or LSB"
 
@@ -31,6 +43,7 @@ plt.title("RF Signal Spectrum")
 plt.show()
 
 from weaver_filter_bpf_1100hz_1800hz import filter
+
 # from weaver_filter_lpf_1100hz import filter
 # from weaver_filter_lpf_4800hz import filter
 

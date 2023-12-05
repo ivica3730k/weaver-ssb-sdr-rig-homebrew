@@ -1,6 +1,8 @@
 import serial
 import time
-
+import struct
+import numpy as np
+import matplotlib.pyplot as plt
 # Set the sample rate
 SAMPLE_RATE = 44100
 # Set the serial port and baud rate
@@ -14,8 +16,8 @@ data_list = []
 
 time_1 = time.time_ns()
 while len(data_list) < SAMPLE_RATE:
-    byte_val = ser.read(2)
-    int_val = int.from_bytes(byte_val, byteorder='big')
+    data = ser.read(2)
+    int_val = struct.unpack('<H', data)[0]
     data_list.append(int_val)
 time_2 = time.time_ns()
 
@@ -26,4 +28,11 @@ time_taken_ns = time_2 - time_1
 
 print(f"Time taken to read {SAMPLE_RATE} samples: {time_taken_ns} nanoseconds")
 print(f"Time taken to read {SAMPLE_RATE} samples: {time_taken_ns / 1e9} seconds")
+
+# convert to numpy array of 16 bit uints
+data_np = np.array(data_list, dtype=np.uint16)
+
+# plot like oscilloscope
+plt.plot(data_np)
+plt.show()
 

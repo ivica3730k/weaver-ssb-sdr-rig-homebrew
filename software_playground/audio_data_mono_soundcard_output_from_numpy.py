@@ -5,7 +5,10 @@ import threading
 # Set the sample rate
 SAMPLE_RATE = 44100
 
-sinewave = np.array([int(4096 * np.sin(2 * np.pi * 1000 * x / SAMPLE_RATE)) for x in range(SAMPLE_RATE)], dtype=np.int16)
+# sinewave = np.array([int(4096 * np.sin(2 * np.pi * 1000 * x / SAMPLE_RATE)) for x in range(SAMPLE_RATE)], dtype=np.int16)
+# make a 1 second array of noise
+sinewave = np.random.randint(0, 4096, SAMPLE_RATE, dtype=np.int16)
+
 
 # Convert to Python list
 sinewave_bytes = sinewave.tobytes()
