@@ -1,3 +1,6 @@
 [submodule "weaver-ssb-sdr-rig-homebrew-platformio/lib/STM32_TimerInterrupt"]
 	path = weaver-ssb-sdr-rig-homebrew-platformio/lib/STM32_TimerInterrupt
 	url = https://github.com/khoih-prog/STM32_TimerInterrupt
+[submodule "weaver-ssb-sdr-rig-homebrew-platformio/lib/FIR_Filter_Arduino_Library"]
+	path = weaver-ssb-sdr-rig-homebrew-platformio/lib/FIR_Filter_Arduino_Library
+	url = https://github.com/LeemanGeophysicalLLC/FIR_Filter_Arduino_Library
