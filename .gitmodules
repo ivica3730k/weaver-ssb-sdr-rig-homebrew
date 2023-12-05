@@ -1,0 +1,3 @@
+[submodule "weaver-ssb-sdr-rig-homebrew-platformio/lib/STM32_TimerInterrupt"]
+	path = weaver-ssb-sdr-rig-homebrew-platformio/lib/STM32_TimerInterrupt
+	url = https://github.com/khoih-prog/STM32_TimerInterrupt
