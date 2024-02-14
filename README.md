@@ -9,7 +9,3 @@ The analogue front end consists of two pairs of ADE-1 Double balanced mixers, SI
 cross-platform microcontroller capabilities, external DAC and ADC will be chosen later. 
 
 The digital part will consist of audio pass filters in the IQ chain and the 2nd set of combiners as described in Derek's document.
-
-
-
-
